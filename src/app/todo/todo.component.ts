@@ -10,10 +10,12 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule,FormsModule]
 })
 export class TodoComponent {
-  newTask: string = ''; // Tarea nueva
-  tasks: { text: string; completed: boolean }[] = []; // Lista de tareas
-  filteredTasks: { text: string; completed: boolean }[] = []; // Lista filtrada
-  currentFilter: string = 'all'; // Filtro actual
+  newTask: string = ''; 
+  tasks: { text: string; completed: boolean }[] = []; 
+  filteredTasks: { text: string; completed: boolean }[] = []; 
+  pendingTasks: { text: string; completed: boolean }[] = [];
+  completedTasks: { text: string; completed: boolean }[] = [];
+  currentFilter: string = 'all';  
 
   constructor() {
     this.updateFilter();
@@ -49,5 +51,8 @@ export class TodoComponent {
     } else if (this.currentFilter === 'completed') {
       this.filteredTasks = this.tasks.filter(t => t.completed);
     }
+
+    this.pendingTasks = this.tasks.filter(t => !t.completed);
+    this.completedTasks = this.tasks.filter(t => t.completed);
   }
 }

@@ -1,38 +1,51 @@
 <div class="todo-container">
-    <h1>Lista de Tareas</h1>
-    
-    <div class="input-container">
-        <input 
-          type="text" 
-          [(ngModel)]="newTask" 
-          placeholder="Agregar nueva tarea"
-          (keyup.enter)="addTask()" 
-        />
-        <button (click)="addTask()">Agregar</button>
-      </div>
-    
-      <!-- Filtros de tareas -->
-      <div class="filters">
-        <button (click)="filterTasks('all')">Todas</button>
-        <button (click)="filterTasks('pending')">Pendientes</button>
-        <button (click)="filterTasks('completed')">Completadas</button>
-      </div>
-    
-      <!-- Lista de tareas -->
-      <ul>
-        <li *ngFor="let task of filteredTasks">
-          <!-- Checkbox para marcar como completada -->
+    <div class="todo-main">
+      <div class="left-section">
+        <h2>Lista de Tareas</h2>
+  
+        <div class="input-container">
           <input 
-            type="checkbox" 
-            [(ngModel)]="task.completed" 
-            (change)="updateFilter()"
+            type="text" 
+            [(ngModel)]="newTask" 
+            placeholder="Agregar nueva tarea" 
+            (keyup.enter)="addTask()" 
           />
-          
-          <!-- Tarea en texto, marcado si está completada -->
-          <span [class.completed]="task.completed">{{ task.text }}</span>
-          
-          <!-- Botón para eliminar tarea -->
-          <button (click)="deleteTask(task)">Eliminar</button>
-        </li>
-      </ul>
-</div>
+          <button (click)="addTask()">Agregar</button>
+        </div>
+
+        <ul>
+          <li *ngFor="let task of filteredTasks">
+            <input 
+              type="checkbox" 
+              [(ngModel)]="task.completed" 
+              (change)="updateFilter()" 
+            />
+            <span [class.completed]="task.completed">{{ task.text }}</span>
+            <button (click)="deleteTask(task)">Eliminar</button>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="right-section">
+        <!-- Tarjeta de tareas pendientes -->
+        <div class="card">
+          <h3>Tareas Pendientes</h3>
+          <ul>
+            <li *ngFor="let task of pendingTasks">
+              <span>{{ task.text }}</span>
+            </li>
+          </ul>
+        </div>
+  
+        <!-- Tarjeta de tareas completadas -->
+        <div class="card">
+          <h3>Tareas Completadas</h3>
+          <ul>
+            <li *ngFor="let task of completedTasks">
+              <span>{{ task.text }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

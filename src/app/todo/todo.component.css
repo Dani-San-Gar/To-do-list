@@ -1,25 +1,42 @@
 .todo-container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    margin: 20px;
 }
   
-h1 {
-    text-align: center;
+.todo-main {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+}
+  
+.left-section {
+    flex: 1; /* Toma toda la columna izquierda */
+    margin-right: 20px;
+}
+  
+.right-section {
+    flex: 0.4; /* Toma un 40% del ancho para las tarjetas */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+  
+.input-container {
+    display: flex;
+    margin-bottom: 10px;
 }
   
 input[type="text"] {
-    width: calc(100% - 60px);
+    width: 100%;
     padding: 8px;
     margin-right: 8px;
 }
   
 button {
     padding: 8px 12px;
-    margin: 5px 0;
+    cursor: pointer;
 }
   
 ul {
@@ -39,4 +56,26 @@ li {
 .completed {
     text-decoration: line-through;
     color: gray;
+}
+  
+
+.card {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+  
+.card h3 {
+    margin-top: 0;
+}
+  
+.card ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+  
+.card li {
+    margin: 5px 0;
+    color: #555;
 }
